@@ -28,6 +28,7 @@ class VentanaInicio extends JFrame implements ActionListener{
 		String operacion = "";
 
         cajaoper = new JTextField();
+		cajaoper.setEditable(false);
 		agregarComponente(cajaoper, 0, 0, 4, 1);
 
 
@@ -41,6 +42,9 @@ class VentanaInicio extends JFrame implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent e){
 				cajaOperacion.setText("");
+				cajaoper.setText("");
+				FC.resultado = 0;
+				
 
 			}
 		});
