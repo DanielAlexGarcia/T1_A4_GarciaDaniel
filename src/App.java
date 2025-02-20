@@ -49,9 +49,40 @@ class VentanaInicio extends JFrame implements ActionListener{
 			}
 		});
 		agregarComponente(Delet, 0, 2, 1, 1);
-		backSpace = new JButton("C");
+		backSpace = new JButton("<--");
+		backSpace.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				String var = cajaOperacion.getText();
+				StringBuilder var1 = new StringBuilder(var);
+				int index = var1.length()-1;
+				var1.deleteCharAt(index);
+				cajaOperacion.setText("");
+				cajaOperacion.setText(var1.toString());
+			}
+		});
 		agregarComponente(backSpace, 1, 2, 1, 1);
 		Cuadrado = new JButton("X^2");
+		Cuadrado.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String var = cajaOperacion.getText();
+				String vr = "";
+				for(int i = 0; i<var.length(); i++){
+					char n = var.charAt(i);
+					String nn = String.valueOf(n);
+
+					if(nn.matches("[0-9]") || nn.equals(".")){
+						vr = vr + nn;
+					}
+				}
+				double num = Double.parseDouble(vr);
+				double nu = num * num;
+				String nm = String.valueOf(nu);
+				cajaoper.setText(var);
+				cajaOperacion.setText(nm);
+			}
+		});
 		agregarComponente(Cuadrado, 2, 2, 1, 1);
 		div = new JButton("/");
 		div.addActionListener(new ActionListener() {
@@ -178,6 +209,19 @@ class VentanaInicio extends JFrame implements ActionListener{
 		am.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e){
+				String var = cajaOperacion.getText();
+				char m = var.charAt(0);
+				String n = String.valueOf(m);
+
+				if (n.equals("-")){
+					StringBuilder vr = new StringBuilder(var);
+					vr.deleteCharAt(0);
+					cajaOperacion.setText(vr.toString());
+				}
+				else{
+					StringBuilder va = new StringBuilder("-" + var);
+					cajaOperacion.setText(va.toString());
+				}
 				
 			}
 		});

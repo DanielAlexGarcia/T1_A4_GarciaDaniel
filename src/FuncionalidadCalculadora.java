@@ -63,8 +63,8 @@ public class FuncionalidadCalculadora {
             char nn = operacion.charAt(i);
             String nm = String.valueOf(nn);
 
-            // Si es un dígito o un punto decimal, concatenar a la cadena actual
-            if (nm.matches("[0-9]") || nm.equals(".")) {
+            // Si es un dígito, un punto decimal o un signo negativo al inicio
+            if (nm.matches("[0-9]") || nm.equals(".") || (nm.equals("-") && (i == 0 || operadores.size() > 0))) {
                 operacio = operacio + nm;
             }
             // Si es un operador
