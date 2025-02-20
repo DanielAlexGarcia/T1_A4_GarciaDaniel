@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class FuncionalidadCalculadora {
     double resultado = 0;
+    boolean cambioSimbolo = false;
     ArrayList<Double> numeros = new ArrayList<>();
     ArrayList<String> operadores = new ArrayList<>();
 
@@ -23,6 +24,7 @@ public class FuncionalidadCalculadora {
         }
         return N1 / N2;
     }
+    
 
     public double HacerOperacion() {
         // Reiniciar el resultado antes de comenzar la operación
@@ -49,7 +51,9 @@ public class FuncionalidadCalculadora {
                     throw new IllegalArgumentException("Operador no válido: " + oper);
             }
         }
-
+        if (cambioSimbolo){
+            resultado = resultado * -1;
+        }
         return resultado;
     }
 

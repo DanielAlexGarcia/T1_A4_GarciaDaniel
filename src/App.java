@@ -14,6 +14,7 @@ class VentanaInicio extends JFrame implements ActionListener{
 		N4, N5, N6, menos,
 		N1, N2, N3, mas,
 		am, N0, point, igual;
+	JRadioButton n;
 
     public VentanaInicio(){
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -205,27 +206,18 @@ class VentanaInicio extends JFrame implements ActionListener{
 		});
 		agregarComponente(mas, 3, 5, 1, 1);
 
+
 		am = new JButton("+/-");
+		am.setBackground(Color.LIGHT_GRAY);
 		am.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e){
-				String var = cajaOperacion.getText();
-				char m = var.charAt(0);
-				String n = String.valueOf(m);
-
-				if (n.equals("-")){
-					StringBuilder vr = new StringBuilder(var);
-					vr.deleteCharAt(0);
-					cajaOperacion.setText(vr.toString());
-				}
-				else{
-					StringBuilder va = new StringBuilder("-" + var);
-					cajaOperacion.setText(va.toString());
-				}
-				
+				FC.cambioSimbolo = !FC.cambioSimbolo;
+				cambioColor();
 			}
 		});
 		agregarComponente(am, 0, 6, 1, 1);
+
 		N0 = new JButton("0");
 		N0.addActionListener(new ActionListener() {
 			@Override
@@ -269,6 +261,15 @@ class VentanaInicio extends JFrame implements ActionListener{
 		gbc.gridheight = h;
 		gbl.setConstraints(componente, gbc);
 		add(componente);
+	}
+
+	public void cambioColor(){
+		if(FC.cambioSimbolo){
+			am.setBackground(Color.GREEN);
+		}
+		else if (!FC.cambioSimbolo){
+			am.setBackground(Color.LIGHT_GRAY);
+		}
 	}
 
 
